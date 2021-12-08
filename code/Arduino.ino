@@ -25,8 +25,8 @@ float x = 0;
 float y = 0;
 float pi = 3.14;
 
-char ssid[] = "TSN_ROCKS!";             //  your network SSID (name) between the " "
-char pass[] = "mvfy6595";      // your network password between the " "
+char ssid[] = "";             //  your network SSID (name) between the " "
+char pass[] = "";      // your network password between the " "
 int keyIndex = 0;                 // your network key Index number (needed only for WEP)
 int status = WL_IDLE_STATUS;      //connection status
 WiFiServer server(80);            //server socket
@@ -94,9 +94,6 @@ void loop() {
             int randomReading = analogRead(A1);
             client.print("Random reading from analog pin: ");
             client.print(randomReading);
-           
-            
-            
 
             // The HTTP response ends with another blank line:
             client.println();
@@ -269,35 +266,6 @@ void turnLeft() {
 }
 
 void createCI(String val){
-  
-//  if(client.connect(cse_ip, cse_port)) {
-//    Serial.println("Connected to server");
-//    // make a HTTP request:
-//    // send HTTP header
-//    client.println(String("POST") + " " + "/~/in-cse/in-name/" + ae + cnt);
-//    client.println("Host: " + cse_ip);
-//
-//    client.println(String("X-M2M-Origin")+" "+String("admin:admin"));
-//    client.println(String("Content-Type")+" "+String("application/json;ty=4"));
-//    client.println(String("Connection")+" "+String("keep-alive"));
-//    client.println(); // end HTTP header
-//    String body = "{\"m2m:cin\": {\"lbl\": [ \"Team-13\" ],\"con\": \"" + String(val)+ "\"}}";
-//    client.println(body);
-//
-//    while(client.connected()) {
-//      if(client.available()){
-//        // read an incoming byte from the server and print it to serial monitor:
-//        char c = client.read();
-//        Serial.print(c);
-//      }
-//    }
-//    client.stop();
-//    Serial.println();
-//    Serial.println("disconnected");
-//  } else {// if not connected:
-//    Serial.println("connection failed");
-//  }
-
   String body = "{\"m2m:cin\": {\"lbl\": [ \"Team-13\" ],\"con\": \"" + String(val)+ "\"}}";
   Hclient.beginRequest();
   Hclient.post("/~/in-cse/in-name/Team-13/Node-1/Data/");
@@ -421,16 +389,3 @@ void printWEB() {
     Serial.println("client disconnected");
   }
 }
-
-//void setup() {
-//  Serial.begin(9600);
-//  pinMode(ledPin, OUTPUT);
-//  while (!Serial);
-//  
-//  enable_WiFi();
-//  connect_WiFi();
-//
-//  server.begin();
-//  printWifiStatus();
-//
-//}
