@@ -267,6 +267,17 @@ void turnLeft() {
 }
 
 void createCI(String val){
+  uint8_t key[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+  int i;
+  char data[] = "0123456789012345";
+  for(i=0;i<val.length();i++){
+    data[i]=val[i];
+  }
+  while(i<16){
+    data[i]="A";
+    i++;
+  }
+  aes256_enc_single(key, data);
   String body = "{\"m2m:cin\": {\"lbl\": [ \"Team-13\" ],\"con\": \"" + String(val)+ "\"}}";
   Hclient.beginRequest();
   Hclient.post("/~/in-cse/in-name/Team-13/Node-1/Data/");
