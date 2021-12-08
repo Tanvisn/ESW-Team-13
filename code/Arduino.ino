@@ -3,6 +3,7 @@
 #include <MotorDriver.h>
 #include <WiFiNINA.h>
 #include <SPI.h>
+#include <AESLib.h>
 #include <ArduinoHttpClient.h>
 
 MotorDriver m;
