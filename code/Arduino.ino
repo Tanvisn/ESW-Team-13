@@ -12,6 +12,7 @@ bool on = false;
 #define MAX_DISTANCE 200 
 #define MAX_SPEED 190 // sets speed of DC  ms
 #define MAX_SPEED_OFFSET 20
+#define ROUNDTRIP_CM 57      // Microseconds (uS) it takes sound to travel round-trip 1cm (2cm total), uses integer to save compiled code space.
 
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE); 
 
@@ -174,7 +175,7 @@ int lookLeft()
 
 int readPing() { 
   delay(70);
-  int cm = sonar.ping_cm();
+  int cm = int(sonar.ping_median()/ROUNDTRIP_CM);
   if(cm==0)
   {
     cm = 250;
